@@ -4,86 +4,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CatalogoLivros {
-  //atributo
-  private List<Livro> livroList;
+    private List<Livros> livrosList;
 
-  public CatalogoLivros() {
-    this.livroList = new ArrayList<>();
-  }
-
-  public void adicionarLivro(String titulo, String autor, int anoPublicacao) {
-    livroList.add(new Livro(titulo, autor, anoPublicacao));
-  }
-
-  public List<Livro> pesquisarPorAutor(String autor) {
-    List<Livro> livrosPorAutor = new ArrayList<>();
-    if (!livroList.isEmpty()) {
-      for (Livro l : livroList) {
-        if (l.getAutor().equalsIgnoreCase(autor)) {
-          livrosPorAutor.add(l);
-        }
-      }
-      return livrosPorAutor;
-    } else {
-      throw new RuntimeException("A lista está vazia!");
+    public CatalogoLivros(){
+        this.livrosList = new ArrayList<>();
     }
-  }
-
-  public List<Livro> pesquisarPorIntervaloAnos(int anoInicial, int anoFinal) {
-    List<Livro> livrosPorIntervaloAnos = new ArrayList<>();
-    if (!livroList.isEmpty()) {
-      for (Livro l : livroList) {
-        if (l.getAnoPublicacao() >= anoInicial && l.getAnoPublicacao() <= anoFinal) {
-          livrosPorIntervaloAnos.add(l);
-        }
-      }
-      return livrosPorIntervaloAnos;
-    } else {
-      throw new RuntimeException("A lista está vazia!");
+    public void adicionarLivro(String titulo, String autor, int anoPublicacao){
+        livrosList.add(new Livros(titulo, autor, anoPublicacao));
     }
-  }
 
-  public Livro pesquisarPorTitulo(String titulo) {
-    Livro livroPorTitulo = null;
-    if (!livroList.isEmpty()) {
-      for (Livro l : livroList) {
-        if (l.getTitulo().equalsIgnoreCase(titulo)) {
-          livroPorTitulo = l;
-          break;
+    public void pesquisarPorAutor(String autor){
+        List<Livros> livrosEncontrados = new ArrayList<>();
+        if (!livrosList.isEmpty()){
+            for (Livros l: livrosList) {
+                if (l.getAutor().toString().equalsIgnoreCase(autor)) {
+                    livrosEncontrados.add(l);
+                }
+                System.out.println("autor " + autor);
+                System.out.println("l.getAutor().toString() " + l.getAutor().toString());
+            }
+        } else{
+            System.out.println("pesquisarPorAutor: A lista está vazia");
         }
-      }
-      return livroPorTitulo;
-    } else {
-      throw new RuntimeException("A lista está vazia!");
+        System.out.println("Pesquisa por Autor " + livrosEncontrados);
     }
-  }
 
-  public static void main(String[] args) {
-    // Criando uma instância do catálogo de livros
-    CatalogoLivros catalogoLivros = new CatalogoLivros();
+    public void pesquisarPorIntervaloAnos(int anoInicial, int anoFinal){
+        List<Livros> livrosEncontrados = new ArrayList<>();
+        if(!livrosList.isEmpty()){
+            for(Livros l: livrosList){
+                if(l.getAnoPublicacao() >= anoInicial && l.getAnoPublicacao() <= anoFinal){
+                    livrosEncontrados.add(l);
+                }
+            }
+        }else {
+            System.out.println("pesquisarPorIntervaloAnos: A lista esta vazia");
+        }
+        System.out.println("Pesquisa por intervalo " + livrosEncontrados);
+    }
 
-    // Adicionando livros ao catálogo
-    catalogoLivros.adicionarLivro("Microsserviços Prontos Para a Produção", "Susan J. Fowler", 2017);
-    catalogoLivros.adicionarLivro("Java Guia do Programador", "Peter Jandl Junior", 2021);
-    catalogoLivros.adicionarLivro("Código Limpo", "Robert C. Martin", 2009);
-    catalogoLivros.adicionarLivro("O Codificador Limpo", "Robert C. Martin", 2012);
+    public void pesquisaPorTitulo(String titulo){
+        List <Livros> livroEncontrado = new ArrayList<>();
+        if(!livrosList.isEmpty()){
+            for (Livros l : livrosList){
+                if(l.getTitulo().equalsIgnoreCase(titulo)){
+                    livroEncontrado.add(l);
+                }
+            }
+        } else {
+            System.out.println("pesquisaPorTitulo: A lista esta vazia");
+        }
+        System.out.println("Pesquisa por titulo " + livroEncontrado);
+    }
+    public static void main(String[] args) {
+        CatalogoLivros livros = new CatalogoLivros();
 
-    // Exibindo livros pelo mesmo autor
-    System.out.println(catalogoLivros.pesquisarPorAutor("Robert C. Martin"));
+        livros.adicionarLivro("Garra ", "Angela ", 2005);
+        livros.adicionarLivro("Robson Crozue ", "Jose ", 2000);
 
-    // Exibindo livros pelo mesmo autor (caso em que não há livros de um autor específico)
-    System.out.println(catalogoLivros.pesquisarPorAutor("Autor Inexistente"));
+        livros.pesquisarPorAutor("Angela");
+        livros.pesquisarPorIntervaloAnos(2005,2006);
+        livros.pesquisaPorTitulo("Garra");
+    }
 
-    // Exibindo livros dentro de um intervalo de anos
-    System.out.println(catalogoLivros.pesquisarPorIntervaloAnos(2010, 2022));
-
-    // Exibindo livros dentro de um intervalo de anos (caso em que não há livros no intervalo)
-    System.out.println(catalogoLivros.pesquisarPorIntervaloAnos(2025, 2030));
-
-    // Exibindo livros por título
-    System.out.println(catalogoLivros.pesquisarPorTitulo("Java Guia do Programador"));
-
-    // Exibindo livros por título (caso em que não há livros com o título especificado)
-    System.out.println(catalogoLivros.pesquisarPorTitulo("Título Inexistente"));
-  }
 }
