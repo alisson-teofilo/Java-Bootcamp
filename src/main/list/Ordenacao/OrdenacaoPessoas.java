@@ -2,57 +2,51 @@ package main.list.Ordenacao;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class OrdenacaoPessoas {
-  //atributo
-  private List<Pessoa> pessoaList;
+    private List<Pessoa> listPessoa;
 
-  public OrdenacaoPessoas() {
-    this.pessoaList = new ArrayList<>();
-  }
-
-  public void adicionarPessoa(String nome, int idade, double altura) {
-    pessoaList.add(new Pessoa(nome, idade, altura));
-  }
-
-  public List<Pessoa> ordenarPorIdade() {
-    List<Pessoa> pessoasPorIdade = new ArrayList<>(pessoaList);
-    if (!pessoaList.isEmpty()) {
-      Collections.sort(pessoasPorIdade);
-      return pessoasPorIdade;
-    } else {
-      throw new RuntimeException("A lista está vazia!");
+    public OrdenacaoPessoas(){
+        this.listPessoa = new ArrayList<>();
     }
-  }
 
-  public List<Pessoa> ordenarPorAltura() {
-    List<Pessoa> pessoasPorAltura = new ArrayList<>(pessoaList);
-    if (!pessoaList.isEmpty()) {
-      Collections.sort(pessoasPorAltura, new ComparatorPorAltura());
-      return pessoasPorAltura;
-    } else {
-      throw new RuntimeException("A lista está vazia!");
+    public List<Pessoa> adicionarPessoa(String nome, int idade, int alturEmCm){
+        listPessoa.add(new Pessoa(nome, idade, alturEmCm));
+        return listPessoa;
     }
-  }
 
-  public static void main(String[] args) {
-  // Criando uma instância da classe OrdenacaoPessoas
-    OrdenacaoPessoas ordenacaoPessoas = new OrdenacaoPessoas();
+    public List<Pessoa> ordenarPorIdade(){
+        List<Pessoa> pessoasOrdenadas = new ArrayList<>(listPessoa);
+        if(!listPessoa.isEmpty()){
+            Collections.sort(pessoasOrdenadas);
+        }else{
+            System.out.println("A lista esta vazia");
+        }
+        return pessoasOrdenadas;
+    }
 
-    // Adicionando pessoas à lista
-    ordenacaoPessoas.adicionarPessoa("Alice", 20, 1.56);
-    ordenacaoPessoas.adicionarPessoa("Bob", 30, 1.80);
-    ordenacaoPessoas.adicionarPessoa("Charlie", 25, 1.70);
-    ordenacaoPessoas.adicionarPessoa("David", 17, 1.56);
+    public List<Pessoa> ordenarPorAltura(){
+        List<Pessoa> pessoaOrdenadas = new ArrayList<>(listPessoa);
+        if(!listPessoa.isEmpty()){
+            Collections.sort(pessoaOrdenadas, new ComparatorPorAltura());
+        }else {
+            System.out.println("A lista está vazia");
+        }
+        return pessoaOrdenadas;
+    }
 
-    // Exibindo a lista de pessoas adicionadas
-    System.out.println(ordenacaoPessoas.pessoaList);
+    public static void main(String[] args) {
+        OrdenacaoPessoas listaDePessoas = new OrdenacaoPessoas();
 
-    // Ordenando e exibindo por idade
-    System.out.println(ordenacaoPessoas.ordenarPorIdade());
+        listaDePessoas.adicionarPessoa("Alisson", 30, 172);
+        listaDePessoas.adicionarPessoa("Vitória", 21, 153);
+        listaDePessoas.adicionarPessoa("Dinha", 28, 160);
+        listaDePessoas.adicionarPessoa("Wesley", 36, 170);
 
-    // Ordenando e exibindo por altura
-    System.out.println(ordenacaoPessoas.ordenarPorAltura());
-  }
+        System.out.println("Por idade: " + listaDePessoas.ordenarPorIdade());
+        System.out.println("Por altura: " + listaDePessoas.ordenarPorAltura());
+    }
 }
+

@@ -17,11 +17,9 @@ public class CatalogoLivros {
         List<Livros> livrosEncontrados = new ArrayList<>();
         if (!livrosList.isEmpty()){
             for (Livros l: livrosList) {
-                if (l.getAutor().toString().equalsIgnoreCase(autor)) {
+                if (l.getAutor().equalsIgnoreCase(autor)) {
                     livrosEncontrados.add(l);
                 }
-                System.out.println("autor " + autor);
-                System.out.println("l.getAutor().toString() " + l.getAutor().toString());
             }
         } else{
             System.out.println("pesquisarPorAutor: A lista está vazia");
@@ -59,11 +57,11 @@ public class CatalogoLivros {
     public static void main(String[] args) {
         CatalogoLivros livros = new CatalogoLivros();
 
-        livros.adicionarLivro("Garra ", "Angela ", 2005);
-        livros.adicionarLivro("Robson Crozue ", "Jose ", 2000);
+        livros.adicionarLivro("Garra", "Angela", 2005);
+        livros.adicionarLivro("Robson Crozue", "Jose", 2000);
 
         livros.pesquisarPorAutor("Angela");
-        livros.pesquisarPorIntervaloAnos(2005,2006);
+        livros.pesquisarPorIntervaloAnos(2000,2006);
         livros.pesquisaPorTitulo("Garra");
     }
 
