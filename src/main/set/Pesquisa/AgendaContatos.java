@@ -40,7 +40,6 @@ public class AgendaContatos {
                     c.setNumeroContato(novoNumero);
                     contato = c;
                 }
-
             }
         }else {
             System.out.println("A lista esta vazia");
