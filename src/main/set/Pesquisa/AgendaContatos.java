@@ -4,82 +4,64 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class AgendaContatos {
-  //atributo
-  private Set<Contato> contatosSet;
+    private Set<Contato> congContatoSet;
 
-  public AgendaContatos() {
-    this.contatosSet = new HashSet<>();
-  }
-
-  public void adicionarContato(String nome, int numero) {
-    contatosSet.add(new Contato(nome, numero));
-  }
-
-  public void exibirContatos() {
-    if (!contatosSet.isEmpty()) {
-      System.out.println(contatosSet);
-    } else {
-      System.out.println("O conjunto está vazio!");
+    public AgendaContatos(){
+        this.congContatoSet = new HashSet<>();
     }
-  }
 
-  public Set<Contato> pesquisarPorNome(String nome) {
-    Set<Contato> contatosPorNome = new HashSet<>();
-    if (!contatosSet.isEmpty()) {
-      for (Contato c : contatosSet) {
-        if (c.getNome().startsWith(nome)) {
-          contatosPorNome.add(c);
+    public void adicionaContato(String nome, int numeroContato){
+        congContatoSet.add( new Contato(nome, numeroContato));
+    }
+
+    public Set<Contato> exibirContatos(){
+        return congContatoSet;
+    }
+
+    public Contato pesquisarPorNome(String nome){
+        Contato contatoEncontrado = null;
+        if(!congContatoSet.isEmpty()){
+            for (Contato c: congContatoSet) {
+                if(c.getNome().equalsIgnoreCase(nome)){
+                    contatoEncontrado = c;
+                }
+            }
+        }else {
+            System.out.println("O conjusto esta vazio");
         }
-      }
-      return contatosPorNome;
-    } else {
-      throw new RuntimeException("O conjunto está vazio!");
+        return contatoEncontrado;
     }
-  }
 
-  public Contato atualizarNumeroContato(String nome, int novoNumero) {
-    Contato contatoAtualizado = null;
-    if (!contatosSet.isEmpty()) {
-      for (Contato c : contatosSet) {
-        if (c.getNome().equalsIgnoreCase(nome)) {
-          c.setNumero(novoNumero);
-          contatoAtualizado = c;
-          break;
+    public Contato atualizarNumeroContato(String nome, int novoNumero){
+        Contato contato = null;
+        if(!congContatoSet.isEmpty()){
+            for(Contato c: congContatoSet){
+                if(c.getNome().equalsIgnoreCase(nome)){
+                    c.setNumeroContato(novoNumero);
+                    contato = c;
+                }
+
+            }
+        }else {
+            System.out.println("A lista esta vazia");
         }
-      }
-      return contatoAtualizado;
-    } else {
-      throw new RuntimeException("O conjunto está vazio!");
+        return contato;
     }
-  }
 
-  public static void main(String[] args) {
-    // Criando uma instância da classe AgendaContatos
-    AgendaContatos agendaContatos = new AgendaContatos();
+    public static void main(String[] args) {
+        AgendaContatos contatos = new AgendaContatos();
 
-    // Exibindo os contatos no conjunto (deve estar vazio)
-    agendaContatos.exibirContatos();
+        contatos.adicionaContato("Alisson", 996885920);
+        contatos.adicionaContato("Vitória", 333333);
+        contatos.adicionaContato("Dinha", 44444444);
+        contatos.adicionaContato("Wesley", 55555);
 
-    // Adicionando contatos à agenda
-    agendaContatos.adicionarContato("João", 123456789);
-    agendaContatos.adicionarContato("Maria", 987654321);
-    agendaContatos.adicionarContato("Maria Fernandes", 55555555);
-    agendaContatos.adicionarContato("Ana", 88889999);
-    agendaContatos.adicionarContato("Fernando", 77778888);
-    agendaContatos.adicionarContato("Carolina", 55555555);
+        System.out.println("exibe " + contatos.exibirContatos());
+        System.out.println("pesquisa " + contatos.pesquisarPorNome("Alisson"));
+        System.out.println(contatos.atualizarNumeroContato("Alisson", 11111));
+    }
 
-    // Exibindo os contatos na agenda
-    agendaContatos.exibirContatos();
 
-    // Pesquisando contatos pelo nome
-    System.out.println(agendaContatos.pesquisarPorNome("Maria"));
-
-    // Atualizando o número de um contato
-    Contato contatoAtualizado = agendaContatos.atualizarNumeroContato("Carolina", 44443333);
-    System.out.println("Contato atualizado: " + contatoAtualizado);
-
-    // Exibindo os contatos atualizados na agenda
-    System.out.println("Contatos na agenda após atualização:");
-    agendaContatos.exibirContatos();
-  }
 }
+
+

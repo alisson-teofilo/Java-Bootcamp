@@ -3,41 +3,47 @@ package main.set.Pesquisa;
 import java.util.Objects;
 
 public class Contato {
-  //atributos
-  private String nome;
-  private int numero;
+    private String nome;
+    private int numeroContato;
 
-  public Contato(String nome, int numero) {
-    this.nome = nome;
-    this.numero = numero;
-  }
+    public Contato(String nome, int numeroContato){
+        this.nome = nome;
+        this.numeroContato = numeroContato;
+    }
 
-  public String getNome() {
-    return nome;
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Contato contato)) return false;
+        return numeroContato == contato.numeroContato && Objects.equals(nome, contato.nome);
+    }
 
-  public int getNumero() {
-    return numero;
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, numeroContato);
+    }
 
-  public void setNumero(int numero) {
-    this.numero = numero;
-  }
+    @Override
+    public String toString() {
+        return "Contato{" +
+                "nome='" + nome + '\'' +
+                ", numeroContato=" + numeroContato +
+                '}';
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Contato contato)) return false;
-    return Objects.equals(getNome(), contato.getNome());
-  }
+    public String getNome(){
+        return nome;
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(getNome());
-  }
+    public void setNome(String nome){
+        this.nome = nome;
+    }
 
-  @Override
-  public String toString() {
-    return "{" + nome + "," + numero + "}";
-  }
+    public int getNumeroContato(){
+        return numeroContato;
+    }
+    public void setNumeroContato(int numeroContato){
+        this.numeroContato = numeroContato;
+    }
+
 }
