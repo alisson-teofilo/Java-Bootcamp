@@ -1,35 +1,42 @@
 package main.map.Pesquisa;
 
 public class Produto {
-  //atributos
-  private String nome;
-  private double preco;
-  private int quantidade;
+    private String nome;
+    private double preco;
+    private int quantidadeEstoque;
 
-  public Produto(String nome, double preco, int quantidade) {
-    this.nome = nome;
-    this.preco = preco;
-    this.quantidade = quantidade;
-  }
+    public Produto(String nome, double preco, int quantidadeEstoque){
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
 
-  public String getNome() {
-    return nome;
-  }
+    public String getNome(){
+        return nome;
+    }
+    public void setNome(String nome){
 
-  public double getPreco() {
-    return preco;
-  }
+        this.nome = nome;
+    }
+    public double getPreco(){
+        return preco;
+    }
+    public void setPreco(double preco){
+        this.preco = preco;
+    }
+    public int getQuantidadeEstoque(){
+        return quantidadeEstoque;
+    }
+    public void setQuantidadeEstoque(int quantidadeEstoque){
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
 
-  public int getQuantidade() {
-    return quantidade;
-  }
-
-  @Override
-  public String toString() {
-    return "Produto{" +
-        "nome='" + nome + '\'' +
-        ", preco=" + preco +
-        ", quantidade=" + quantidade +
-        '}';
-  }
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "nome='" + nome + '\'' +
+                ", preco=" + preco +
+                ", quantidadeEstoque=" + quantidadeEstoque +
+                '}';
+    }
 }

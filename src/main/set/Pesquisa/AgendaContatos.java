@@ -18,33 +18,34 @@ public class AgendaContatos {
         return congContatoSet;
     }
 
-    public Contato pesquisarPorNome(String nome){
-        Contato contatoEncontrado = null;
+    public Set<Contato> pesquisarPorNome(String nome){
+        Set<Contato> pesquisaPorNome = new HashSet<>();
         if(!congContatoSet.isEmpty()){
             for (Contato c: congContatoSet) {
-                if(c.getNome().equalsIgnoreCase(nome)){
-                    contatoEncontrado = c;
+                if(c.getNome().startsWith(nome)){
+                    pesquisaPorNome.add(c);
                 }
             }
         }else {
             System.out.println("O conjusto esta vazio");
         }
-        return contatoEncontrado;
+        return pesquisaPorNome;
     }
 
     public Contato atualizarNumeroContato(String nome, int novoNumero){
-        Contato contato = null;
+        Contato contatoAtualizado = null;
         if(!congContatoSet.isEmpty()){
             for(Contato c: congContatoSet){
                 if(c.getNome().equalsIgnoreCase(nome)){
                     c.setNumeroContato(novoNumero);
-                    contato = c;
+                    contatoAtualizado = c;
+                    break;
                 }
             }
         }else {
             System.out.println("A lista esta vazia");
         }
-        return contato;
+        return contatoAtualizado;
     }
 
     public static void main(String[] args) {

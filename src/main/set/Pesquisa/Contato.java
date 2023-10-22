@@ -15,7 +15,7 @@ public class Contato {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Contato contato)) return false;
-        return numeroContato == contato.numeroContato && Objects.equals(nome, contato.nome);
+        return Objects.equals(getNome(), contato.getNome());
     }
 
     @Override

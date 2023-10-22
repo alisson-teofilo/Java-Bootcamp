@@ -4,60 +4,43 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Dicionario {
-  private Map<String, String> dicionario;
+    private Map<String, String> palavrasMap;
 
-  public Dicionario() {
-    this.dicionario = new HashMap<>();
-  }
-
-  public void adicionarPalavra(String palavra, String definicao) {
-    dicionario.put(palavra, definicao);
-  }
-
-  public void removerPalavra(String palavra) {
-    if (!dicionario.isEmpty()) {
-      dicionario.remove(palavra);
-    } else {
-      System.out.println("O dicionário está vazio.");
+    public Dicionario(){
+        this.palavrasMap = new HashMap<>();
     }
-  }
 
-  public String pesquisarPorPalavra(String palavra) {
-    String definicao = dicionario.get(palavra);
-    if (definicao != null) {
-      return definicao;
+    public void adicionarPalavra(String palavra, String definicao){
+        palavrasMap.put(palavra, definicao);
     }
-    return "Linguagem não encontrada no dicionário.";
-  }
 
-  public void exibirPalavras() {
-    if (!dicionario.isEmpty()) {
-      System.out.println(dicionario);
-    } else {
-      System.out.println("O dicionário está vazio.");
+    public void removerPalavra(String palavra){
+        palavrasMap.remove(palavra);
     }
-  }
 
-  public static void main(String[] args) {
-    Dicionario dicionario = new Dicionario();
+    public void exibirPalavra(){
+        System.out.println(palavrasMap);
+    }
 
-    // Adicionar palavras (linguagens de programação)
-    dicionario.adicionarPalavra("java", "Linguagem de programação orientada a objetos.");
-    dicionario.adicionarPalavra("typescript", "Superset da linguagem JavaScript que adiciona tipagem estática.");
-    dicionario.adicionarPalavra("kotlin", "Linguagem moderna de programação para a JVM.");
+    public String pesquisaPorPalavra(String palavra){
+        String numeroPalavra = null;
+        if(!palavrasMap.isEmpty()){
+            numeroPalavra = palavrasMap.get(palavra);
+        }
+        return numeroPalavra;
+    }
 
-    // Exibir todas as palavras
-    dicionario.exibirPalavras();
+    public static void main(String[] args) {
+        Dicionario dicionario = new Dicionario();
 
-    // Pesquisar palavras
-    String definicaoJava = dicionario.pesquisarPorPalavra("java");
-    System.out.println("Definição da linguagem 'java': " + definicaoJava);
+        dicionario.adicionarPalavra("Carro", "meio de transporte");
+        dicionario.adicionarPalavra("Bicicleta", "meio de transporte economico");
+        dicionario.adicionarPalavra("Laranja", "fruta cítrica");
+        dicionario.adicionarPalavra("Fone", "objeto usado para ouvir musica");
 
-    String definicaoCSharp = dicionario.pesquisarPorPalavra("csharp");
-    System.out.println(definicaoCSharp);
-
-    // Remover uma palavra
-    dicionario.removerPalavra("typescript");
-    dicionario.exibirPalavras();
-  }
+        dicionario.exibirPalavra();
+        dicionario.removerPalavra("Carro");
+        System.out.println(dicionario.pesquisaPorPalavra("Laranja"));
+        dicionario.exibirPalavra();
+    }
 }
